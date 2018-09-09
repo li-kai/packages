@@ -38,10 +38,12 @@ jobs:
       - persist_to_workspace:
           root: ~/packages/Javascript
           paths: .
-  
+
   deploy:
     <<: *javascript
     steps:
+      - checkout:
+          path: ~/packages
       - attach_workspace:
           at: ~/packages/Javascript
       - run:
@@ -49,7 +51,7 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/packages/.npmrc
       - run:
           name: Publish package
-          command: yarn publish
+          command: yarn run publish
 
 workflows:
   version: 2
@@ -58,8 +60,9 @@ workflows:
       - test:
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
       - deploy:
+          context: npm
           requires:
             - test
           filters:
