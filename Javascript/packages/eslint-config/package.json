@@ -1,6 +1,6 @@
 {
   "name": "@li-kai/eslint-config",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Prettier + Airbnb + Our opinionated rules",
   "main": "index.js",
   "license": "MIT",
