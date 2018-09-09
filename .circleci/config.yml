@@ -1,0 +1,69 @@
+version: 2
+aliases:
+  - &restore-node-modules-cache
+    keys:
+      - v1-yarn-deps-{{ checksum "yarn.lock" }}
+
+  - &restore-yarn-cache
+    keys:
+      - v1-yarn-cache
+
+  - &save-node-modules-cache
+    paths:
+      - node_modules
+    key: v1-yarn-deps-{{ checksum "yarn.lock" }}
+
+  - &save-yarn-cache
+    paths:
+      - ~/.yarn-cache
+    key: v1-yarn-cache
+
+javascript: &javascript
+  working_directory: ~/packages/Javascript
+  docker:
+    - image: circleci/node:10
+
+jobs:
+  test:
+    <<: *javascript
+    steps:
+      - checkout:
+          path: ~/packages
+      - restore-cache: *restore-yarn-cache
+      - restore-cache: *restore-node-modules-cache
+      - run: yarn
+      - run: yarn test
+      - save_cache: *save-node-modules-cache
+      - save_cache: *save-yarn-cache
+      - persist_to_workspace:
+          root: ~/packages/Javascript
+          paths: .
+  
+  deploy:
+    <<: *javascript
+    steps:
+      - attach_workspace:
+          at: ~/packages/Javascript
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/packages/.npmrc
+      - run:
+          name: Publish package
+          command: yarn publish
+
+workflows:
+  version: 2
+  test-deploy:
+    jobs:
+      - test:
+          filters:
+            tags:
+              only: /^v.*/
+      - deploy:
+          requires:
+            - test
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
