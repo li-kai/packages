@@ -1,3 +1,7 @@
+#!/usr/bin/env node
+
+'use strict';
+
 const fs = require('fs');
 const { CLIEngine } = require('eslint');
 
@@ -10,9 +14,11 @@ const NUM_TO_STR_RULE = {
   2: ERROR_RULE,
 };
 const cli = new CLIEngine({ fix: true });
-const config = cli.getConfigForFile('./index.js');
+const config = cli.getConfigForFile('./.eslintrc.js');
 
 const PLUGIN_TO_DOC = {
+  'eslint-plugin-node':
+    'https://github.com/mysticatea/eslint-plugin-node/blob/master/docs/rules/',
   'eslint-plugin-import':
     'https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/',
   'eslint-plugin-react':
@@ -36,7 +42,6 @@ function getLinkForPlugin(rule) {
   }
   return `https://eslint.org/docs/rules/${rule}`;
 }
-
 const rules = {};
 
 Object.entries(config.rules)
@@ -56,7 +61,7 @@ Object.entries(config.rules)
     }
 
     // Only include if it is activated
-    if (value !== OFF_RULE && (Array.isArray(value) && value[0] !== OFF_RULE)) {
+    if (value !== OFF_RULE || (Array.isArray(value) && value[0] !== OFF_RULE)) {
       rules[ruleName] = {
         rule: ruleResult,
         link: getLinkForPlugin(ruleName),
@@ -64,13 +69,28 @@ Object.entries(config.rules)
     }
   });
 
+function stringifyReplacer(key, value) {
+  if (value === Infinity) {
+    return 'Infinity';
+  }
+  if (value === -Infinity) {
+    return '-Infinity';
+  }
+  if (Number.isNaN(value)) {
+    return 'NaN';
+  }
+  return value;
+}
+
 let rulesJs = '';
 Object.entries(rules).forEach(([key, { rule, link }]) => {
   const commentLink = `\n    // ${link}`;
-  const ruleJs = `\n    '${key}': ${JSON.stringify(rule)},`;
+  const ruleJs = `\n    '${key}': ${JSON.stringify(rule, stringifyReplacer)},`;
   rulesJs += commentLink + ruleJs;
 });
-rulesJs = rulesJs.replace(/"error"/g, 'warnInDevelopment');
+rulesJs = rulesJs
+  .replace(/"(-?Infinity|NaN)"/g, '$1')
+  .replace(/"error"/g, 'warnInDevelopment');
 
 const fileContent = `const warnInDevelopment =
 process.env.NODE_ENV === 'production' ? 'error' : 'warn';

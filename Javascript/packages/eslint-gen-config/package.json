@@ -1,0 +1,25 @@
+{
+  "name": "@li-kai/eslint-gen-config",
+  "version": "0.0.0",
+  "description": "Eslint config generator",
+  "private": true,
+  "bin": {
+    "gen-config": "./src/index.js"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@li-kai/eslint-config-node": "^0.0.0",
+    "eslint": "^5.5.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "prettier": "^1.14.2"
+  },
+  "peerDependencies": {
+    "eslint": "^5.5.0"
+  }
+}
