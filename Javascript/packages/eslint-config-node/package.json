@@ -1,0 +1,36 @@
+{
+  "name": "@li-kai/eslint-config-node",
+  "version": "0.0.0",
+  "description": "Prettier + Airbnb + Our opinionated rules",
+  "main": "index.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "build": "gen-config",
+    "upgrade": "install-peerdeps --yarn --dev eslint-config-airbnb-base",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@li-kai/eslint-gen-config": "0.0.0",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "install-peerdeps": "^1.8.0",
+    "prettier": "^1.14.2"
+  },
+  "peerDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "prettier": "^1.14.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
