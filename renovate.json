@@ -1,5 +1,32 @@
 {
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    ":preserveSemverRanges"
+  ],
+  "branchPrefix": "deps/",
+  "packageRules": [{
+    "packagePatterns": ["eslint", "stylelint", "prettier"],
+    "groupName": "fmt",
+    "schedule": ["every weekend"],
+    "automerge": true,
+    "automergeType": "branch"
+  }, {
+    "extends": ["monorepo:babel"],
+    "groupName": "babel",
+    "schedule": ["every weekend"],
+    "automerge": true,
+    "automergeType": "branch"
+  }, {
+    "extends": ["monorepo:jest"],
+    "groupName": "jest",
+    "schedule": ["every weekend"],
+    "automerge": true,
+    "automergeType": "branch"
+  }, {
+    "extends": ["monorepo:react"],
+    "groupName": "react",
+    "schedule": ["every weekend"],
+    "automerge": true,
+    "automergeType": "branch"
+  }]
 }
