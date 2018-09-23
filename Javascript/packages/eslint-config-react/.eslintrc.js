@@ -22,41 +22,24 @@ module.exports = {
       },
     },
   },
-  overrides: [
-    {
-      files: '**/*.test.{js,jsx}',
-      env: {
-        jest: true,
-      },
+  overrides: [{
+    files: '**/*.test.{js,jsx}',
+    env: {
+      jest: true,
     },
-  ],
+  }, ],
   rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-        trailingComma: 'all',
-        bracketSpacing: true,
-        jsxBracketSameLine: true,
-        parser: 'flow',
-      },
-    ],
+    // Let git handle the linebreaks instead.
+    'linebreak-style': 'off',
 
     // Enable i++ in for loops
-    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
-
-    // Minor style issues should not stop development
-    semi: [warnInDevelopment, 'always'],
-    'no-trailing-spaces': warnInDevelopment,
-    'no-unused-vars': warnInDevelopment,
-    'comma-dangle': warnInDevelopment,
-    'comma-spacing': [warnInDevelopment, { before: false, after: true }],
+    'no-plusplus': ['error', {
+      allowForLoopAfterthoughts: true
+    }],
 
     // Allow debugger and console statement in development
     'no-debugger': warnInDevelopment,
     'no-console': warnInDevelopment,
-
-    'no-alert': 'off',
 
     'import/extensions': [
       warnInDevelopment,
@@ -85,7 +68,7 @@ module.exports = {
       },
     ],
     'react/require-default-props': 'off',
-    // TODO: Replace divs with buttons, but remove all button styling.
+
     'jsx-a11y/no-static-element-interactions': warnInDevelopment,
     'jsx-a11y/click-events-have-key-events': warnInDevelopment,
     // Allow react-router's Link with keyword 'to'
@@ -105,7 +88,15 @@ module.exports = {
         },
       },
     ],
-    // Let git handle the linebreaks instead.
-    'linebreak-style': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        trailingComma: 'all',
+        bracketSpacing: true,
+        jsxBracketSameLine: true,
+        parser: 'flow',
+      },
+    ],
   },
 };

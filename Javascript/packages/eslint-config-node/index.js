@@ -2,31 +2,26 @@ const warnInDevelopment =
   process.env.NODE_ENV === 'production' ? 'error' : 'warn';
 
 module.exports = {
+  root: true,
+  env: { node: true, es6: true },
+  plugins: ['import', 'node', 'prettier'],
   rules: {
     // https://eslint.org/docs/rules/no-array-constructor
     'no-array-constructor': warnInDevelopment,
     // https://eslint.org/docs/rules/block-scoped-var
     'block-scoped-var': warnInDevelopment,
-    // https://eslint.org/docs/rules/complexity
-    complexity: ['off', 11],
     // https://eslint.org/docs/rules/class-methods-use-this
     'class-methods-use-this': [warnInDevelopment, { exceptMethods: [] }],
     // https://eslint.org/docs/rules/consistent-return
     'consistent-return': warnInDevelopment,
-    // https://eslint.org/docs/rules/curly
-    curly: ['off', 'multi-line'],
     // https://eslint.org/docs/rules/default-case
     'default-case': [warnInDevelopment, { commentPattern: '^no default$' }],
     // https://eslint.org/docs/rules/dot-notation
     'dot-notation': [warnInDevelopment, { allowKeywords: true }],
-    // https://eslint.org/docs/rules/dot-location
-    'dot-location': ['off', 'property'],
     // https://eslint.org/docs/rules/eqeqeq
     eqeqeq: [warnInDevelopment, 'always', { null: 'ignore' }],
     // https://eslint.org/docs/rules/guard-for-in
     'guard-for-in': warnInDevelopment,
-    // https://eslint.org/docs/rules/max-classes-per-file
-    'max-classes-per-file': ['off', 1],
     // https://eslint.org/docs/rules/no-caller
     'no-caller': warnInDevelopment,
     // https://eslint.org/docs/rules/no-case-declarations
@@ -52,11 +47,6 @@ module.exports = {
     'no-fallthrough': warnInDevelopment,
     // https://eslint.org/docs/rules/no-global-assign
     'no-global-assign': [warnInDevelopment, { exceptions: [] }],
-    // https://eslint.org/docs/rules/no-implicit-coercion
-    'no-implicit-coercion': [
-      'off',
-      { boolean: false, number: true, string: true, allow: [] },
-    ],
     // https://eslint.org/docs/rules/no-implied-eval
     'no-implied-eval': warnInDevelopment,
     // https://eslint.org/docs/rules/no-iterator
@@ -67,18 +57,6 @@ module.exports = {
     'no-lone-blocks': warnInDevelopment,
     // https://eslint.org/docs/rules/no-loop-func
     'no-loop-func': warnInDevelopment,
-    // https://eslint.org/docs/rules/no-magic-numbers
-    'no-magic-numbers': [
-      'off',
-      {
-        ignore: [],
-        ignoreArrayIndexes: true,
-        enforceConst: true,
-        detectObjects: false,
-      },
-    ],
-    // https://eslint.org/docs/rules/no-multi-spaces
-    'no-multi-spaces': ['off', { ignoreEOLComments: false }],
     // https://eslint.org/docs/rules/no-multi-str
     'no-multi-str': warnInDevelopment,
     // https://eslint.org/docs/rules/no-new
@@ -198,11 +176,6 @@ module.exports = {
     'no-useless-return': warnInDevelopment,
     // https://eslint.org/docs/rules/no-void
     'no-void': warnInDevelopment,
-    // https://eslint.org/docs/rules/no-warning-comments
-    'no-warning-comments': [
-      'off',
-      { terms: ['todo', 'fixme', 'xxx'], location: 'start' },
-    ],
     // https://eslint.org/docs/rules/no-with
     'no-with': warnInDevelopment,
     // https://eslint.org/docs/rules/prefer-promise-reject-errors
@@ -214,8 +187,6 @@ module.exports = {
     radix: warnInDevelopment,
     // https://eslint.org/docs/rules/vars-on-top
     'vars-on-top': warnInDevelopment,
-    // https://eslint.org/docs/rules/wrap-iife
-    'wrap-iife': ['off', 'outside', { functionPrototypeMethods: false }],
     // https://eslint.org/docs/rules/yoda
     yoda: warnInDevelopment,
     // https://eslint.org/docs/rules/for-direction
@@ -250,18 +221,6 @@ module.exports = {
     'no-ex-assign': warnInDevelopment,
     // https://eslint.org/docs/rules/no-extra-boolean-cast
     'no-extra-boolean-cast': warnInDevelopment,
-    // https://eslint.org/docs/rules/no-extra-parens
-    'no-extra-parens': [
-      'off',
-      'all',
-      {
-        conditionalAssign: true,
-        nestedBinaryExpressions: false,
-        returnAssign: false,
-        ignoreJSX: 'all',
-        enforceForArrowConditionals: false,
-      },
-    ],
     // https://eslint.org/docs/rules/no-func-assign
     'no-func-assign': warnInDevelopment,
     // https://eslint.org/docs/rules/no-inner-declarations
@@ -280,8 +239,6 @@ module.exports = {
     'no-sparse-arrays': warnInDevelopment,
     // https://eslint.org/docs/rules/no-template-curly-in-string
     'no-template-curly-in-string': warnInDevelopment,
-    // https://eslint.org/docs/rules/no-unexpected-multiline
-    'no-unexpected-multiline': 'off',
     // https://eslint.org/docs/rules/no-unreachable
     'no-unreachable': warnInDevelopment,
     // https://eslint.org/docs/rules/no-unsafe-finally
@@ -296,201 +253,27 @@ module.exports = {
     'global-require': warnInDevelopment,
     // https://eslint.org/docs/rules/no-buffer-constructor
     'no-buffer-constructor': warnInDevelopment,
-    // https://eslint.org/docs/rules/no-mixed-requires
-    'no-mixed-requires': ['off', false],
     // https://eslint.org/docs/rules/no-new-require
     'no-new-require': warnInDevelopment,
     // https://eslint.org/docs/rules/no-path-concat
     'no-path-concat': warnInDevelopment,
     // https://eslint.org/docs/rules/no-process-exit
     'no-process-exit': warnInDevelopment,
-    // https://eslint.org/docs/rules/array-bracket-newline
-    'array-bracket-newline': ['off', 'consistent'],
-    // https://eslint.org/docs/rules/array-element-newline
-    'array-element-newline': ['off', { multiline: true, minItems: 3 }],
-    // https://eslint.org/docs/rules/array-bracket-spacing
-    'array-bracket-spacing': ['off', 'never'],
-    // https://eslint.org/docs/rules/block-spacing
-    'block-spacing': ['off', 'always'],
-    // https://eslint.org/docs/rules/brace-style
-    'brace-style': ['off', '1tbs', { allowSingleLine: true }],
     // https://eslint.org/docs/rules/camelcase
     camelcase: [warnInDevelopment, { properties: 'never' }],
-    // https://eslint.org/docs/rules/capitalized-comments
-    'capitalized-comments': [
-      'off',
-      'never',
-      {
-        line: {
-          ignorePattern: '.*',
-          ignoreInlineComments: true,
-          ignoreConsecutiveComments: true,
-        },
-        block: {
-          ignorePattern: '.*',
-          ignoreInlineComments: true,
-          ignoreConsecutiveComments: true,
-        },
-      },
-    ],
-    // https://eslint.org/docs/rules/comma-dangle
-    'comma-dangle': [
-      'warn',
-      {
-        arrays: 'always-multiline',
-        objects: 'always-multiline',
-        imports: 'always-multiline',
-        exports: 'always-multiline',
-        functions: 'always-multiline',
-      },
-    ],
-    // https://eslint.org/docs/rules/comma-spacing
-    'comma-spacing': ['warn', { before: false, after: true }],
-    // https://eslint.org/docs/rules/comma-style
-    'comma-style': [
-      'off',
-      'last',
-      {
-        exceptions: {
-          ArrayExpression: false,
-          ArrayPattern: false,
-          ArrowFunctionExpression: false,
-          CallExpression: false,
-          FunctionDeclaration: false,
-          FunctionExpression: false,
-          ImportDeclaration: false,
-          ObjectExpression: false,
-          ObjectPattern: false,
-          VariableDeclaration: false,
-          NewExpression: false,
-        },
-      },
-    ],
-    // https://eslint.org/docs/rules/computed-property-spacing
-    'computed-property-spacing': ['off', 'never'],
-    // https://eslint.org/docs/rules/eol-last
-    'eol-last': ['off', 'always'],
-    // https://eslint.org/docs/rules/func-call-spacing
-    'func-call-spacing': ['off', 'never'],
-    // https://eslint.org/docs/rules/func-name-matching
-    'func-name-matching': [
-      'off',
-      'always',
-      { includeCommonJSModuleExports: false },
-    ],
     // https://eslint.org/docs/rules/func-names
     'func-names': 'warn',
-    // https://eslint.org/docs/rules/func-style
-    'func-style': ['off', 'expression'],
-    // https://eslint.org/docs/rules/function-paren-newline
-    'function-paren-newline': ['off', 'consistent'],
-    // https://eslint.org/docs/rules/implicit-arrow-linebreak
-    'implicit-arrow-linebreak': ['off', 'beside'],
-    // https://eslint.org/docs/rules/indent
-    indent: [
-      'off',
-      2,
-      {
-        SwitchCase: 1,
-        VariableDeclarator: 1,
-        outerIIFEBody: 1,
-        FunctionDeclaration: { parameters: 1, body: 1 },
-        FunctionExpression: { parameters: 1, body: 1 },
-        CallExpression: { arguments: 1 },
-        ArrayExpression: 1,
-        ObjectExpression: 1,
-        ImportDeclaration: 1,
-        flatTernaryExpressions: false,
-        ignoredNodes: [
-          'JSXElement',
-          'JSXElement > *',
-          'JSXAttribute',
-          'JSXIdentifier',
-          'JSXNamespacedName',
-          'JSXMemberExpression',
-          'JSXSpreadAttribute',
-          'JSXExpressionContainer',
-          'JSXOpeningElement',
-          'JSXClosingElement',
-          'JSXText',
-          'JSXEmptyExpression',
-          'JSXSpreadChild',
-        ],
-        ignoreComments: false,
-      },
-    ],
-    // https://eslint.org/docs/rules/jsx-quotes
-    'jsx-quotes': ['off', 'prefer-double'],
-    // https://eslint.org/docs/rules/key-spacing
-    'key-spacing': ['off', { beforeColon: false, afterColon: true }],
-    // https://eslint.org/docs/rules/keyword-spacing
-    'keyword-spacing': [
-      'off',
-      {
-        before: true,
-        after: true,
-        overrides: {
-          return: { after: true },
-          throw: { after: true },
-          case: { after: true },
-        },
-      },
-    ],
-    // https://eslint.org/docs/rules/line-comment-position
-    'line-comment-position': [
-      'off',
-      { position: 'above', ignorePattern: '', applyDefaultPatterns: true },
-    ],
-    // https://eslint.org/docs/rules/linebreak-style
-    'linebreak-style': ['off', 'unix'],
     // https://eslint.org/docs/rules/lines-between-class-members
     'lines-between-class-members': [
       warnInDevelopment,
       'always',
       { exceptAfterSingleLine: false },
     ],
-    // https://eslint.org/docs/rules/lines-around-comment
-    'lines-around-comment': 'off',
     // https://eslint.org/docs/rules/lines-around-directive
     'lines-around-directive': [
       warnInDevelopment,
       { before: 'always', after: 'always' },
     ],
-    // https://eslint.org/docs/rules/max-depth
-    'max-depth': ['off', 4],
-    // https://eslint.org/docs/rules/max-len
-    'max-len': [
-      'off',
-      100,
-      2,
-      {
-        ignoreUrls: true,
-        ignoreComments: false,
-        ignoreRegExpLiterals: true,
-        ignoreStrings: true,
-        ignoreTemplateLiterals: true,
-      },
-    ],
-    // https://eslint.org/docs/rules/max-lines
-    'max-lines': [
-      'off',
-      { max: 300, skipBlankLines: true, skipComments: true },
-    ],
-    // https://eslint.org/docs/rules/max-lines-per-function
-    'max-lines-per-function': [
-      'off',
-      { max: 50, skipBlankLines: true, skipComments: true, IIFEs: true },
-    ],
-    // https://eslint.org/docs/rules/max-params
-    'max-params': ['off', 3],
-    // https://eslint.org/docs/rules/max-statements
-    'max-statements': ['off', 10],
-    // https://eslint.org/docs/rules/max-statements-per-line
-    'max-statements-per-line': ['off', { max: 1 }],
-    // https://eslint.org/docs/rules/multiline-comment-style
-    'multiline-comment-style': ['off', 'starred-block'],
-    // https://eslint.org/docs/rules/multiline-ternary
-    'multiline-ternary': ['off', 'never'],
     // https://eslint.org/docs/rules/new-cap
     'new-cap': [
       warnInDevelopment,
@@ -505,8 +288,6 @@ module.exports = {
         ],
       },
     ],
-    // https://eslint.org/docs/rules/newline-per-chained-call
-    'newline-per-chained-call': ['off', { ignoreChainWithDepth: 4 }],
     // https://eslint.org/docs/rules/array-callback-return
     'array-callback-return': [warnInDevelopment, { allowImplicit: true }],
     // https://eslint.org/docs/rules/no-bitwise
@@ -515,32 +296,8 @@ module.exports = {
     'no-continue': warnInDevelopment,
     // https://eslint.org/docs/rules/no-lonely-if
     'no-lonely-if': warnInDevelopment,
-    // https://eslint.org/docs/rules/no-mixed-operators
-    'no-mixed-operators': [
-      'off',
-      {
-        groups: [
-          ['%', '**'],
-          ['%', '+'],
-          ['%', '-'],
-          ['%', '*'],
-          ['%', '/'],
-          ['**', '+'],
-          ['**', '-'],
-          ['**', '*'],
-          ['**', '/'],
-          ['&', '|', '^', '~', '<<', '>>', '>>>'],
-          ['==', '!=', '===', '!==', '>', '>=', '<', '<='],
-          ['&&', '||'],
-          ['in', 'instanceof'],
-        ],
-        allowSamePrecedence: false,
-      },
-    ],
     // https://eslint.org/docs/rules/no-multi-assign
     'no-multi-assign': [warnInDevelopment],
-    // https://eslint.org/docs/rules/no-multiple-empty-lines
-    'no-multiple-empty-lines': ['off', { max: 2, maxEOF: 0 }],
     // https://eslint.org/docs/rules/no-nested-ternary
     'no-nested-ternary': warnInDevelopment,
     // https://eslint.org/docs/rules/no-new-object
@@ -571,13 +328,6 @@ module.exports = {
           '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
       },
     ],
-    // https://eslint.org/docs/rules/no-tabs
-    'no-tabs': 'off',
-    // https://eslint.org/docs/rules/no-trailing-spaces
-    'no-trailing-spaces': [
-      'warn',
-      { skipBlankLines: false, ignoreComments: false },
-    ],
     // https://eslint.org/docs/rules/no-underscore-dangle
     'no-underscore-dangle': [
       warnInDevelopment,
@@ -590,72 +340,10 @@ module.exports = {
     ],
     // https://eslint.org/docs/rules/no-unneeded-ternary
     'no-unneeded-ternary': [warnInDevelopment, { defaultAssignment: false }],
-    // https://eslint.org/docs/rules/nonblock-statement-body-position
-    'nonblock-statement-body-position': ['off', 'beside', { overrides: {} }],
-    // https://eslint.org/docs/rules/object-curly-spacing
-    'object-curly-spacing': ['off', 'always'],
-    // https://eslint.org/docs/rules/object-curly-newline
-    'object-curly-newline': [
-      'off',
-      {
-        ObjectExpression: {
-          minProperties: 4,
-          multiline: true,
-          consistent: true,
-        },
-        ObjectPattern: { minProperties: 4, multiline: true, consistent: true },
-        ImportDeclaration: {
-          minProperties: 4,
-          multiline: true,
-          consistent: true,
-        },
-        ExportDeclaration: {
-          minProperties: 4,
-          multiline: true,
-          consistent: true,
-        },
-      },
-    ],
-    // https://eslint.org/docs/rules/object-property-newline
-    'object-property-newline': ['off', { allowAllPropertiesOnSameLine: true }],
     // https://eslint.org/docs/rules/one-var
     'one-var': [warnInDevelopment, 'never'],
-    // https://eslint.org/docs/rules/one-var-declaration-per-line
-    'one-var-declaration-per-line': ['off', 'always'],
     // https://eslint.org/docs/rules/operator-assignment
     'operator-assignment': [warnInDevelopment, 'always'],
-    // https://eslint.org/docs/rules/operator-linebreak
-    'operator-linebreak': ['off', 'before', { overrides: { '=': 'none' } }],
-    // https://eslint.org/docs/rules/padded-blocks
-    'padded-blocks': [
-      'off',
-      { blocks: 'never', classes: 'never', switches: 'never' },
-    ],
-    // https://eslint.org/docs/rules/quote-props
-    'quote-props': [
-      'off',
-      'as-needed',
-      { keywords: false, unnecessary: true, numbers: false },
-    ],
-    // https://eslint.org/docs/rules/quotes
-    quotes: ['off', 'single', { avoidEscape: true }],
-    // https://eslint.org/docs/rules/semi
-    semi: ['warn', 'always'],
-    // https://eslint.org/docs/rules/semi-spacing
-    'semi-spacing': ['off', { before: false, after: true }],
-    // https://eslint.org/docs/rules/semi-style
-    'semi-style': ['off', 'last'],
-    // https://eslint.org/docs/rules/sort-keys
-    'sort-keys': ['off', 'asc', { caseSensitive: false, natural: true }],
-    // https://eslint.org/docs/rules/space-before-function-paren
-    'space-before-function-paren': [
-      'off',
-      { anonymous: 'always', named: 'never', asyncArrow: 'always' },
-    ],
-    // https://eslint.org/docs/rules/space-in-parens
-    'space-in-parens': ['off', 'never'],
-    // https://eslint.org/docs/rules/space-unary-ops
-    'space-unary-ops': ['off', { words: true, nonwords: false, overrides: {} }],
     // https://eslint.org/docs/rules/spaced-comment
     'spaced-comment': [
       warnInDevelopment,
@@ -665,12 +353,6 @@ module.exports = {
         block: { exceptions: ['-', '+'], markers: ['=', '!'], balanced: true },
       },
     ],
-    // https://eslint.org/docs/rules/switch-colon-spacing
-    'switch-colon-spacing': ['off', { after: true, before: false }],
-    // https://eslint.org/docs/rules/template-tag-spacing
-    'template-tag-spacing': ['off', 'never'],
-    // https://eslint.org/docs/rules/unicode-bom
-    'unicode-bom': ['off', 'never'],
     // https://eslint.org/docs/rules/no-delete-var
     'no-delete-var': warnInDevelopment,
     // https://eslint.org/docs/rules/no-label-var
@@ -749,7 +431,7 @@ module.exports = {
     'no-undef-init': warnInDevelopment,
     // https://eslint.org/docs/rules/no-unused-vars
     'no-unused-vars': [
-      'warn',
+      warnInDevelopment,
       { vars: 'all', args: 'after-used', ignoreRestSiblings: true },
     ],
     // https://eslint.org/docs/rules/no-use-before-define
@@ -763,26 +445,16 @@ module.exports = {
       'as-needed',
       { requireReturnForObjectLiteral: false },
     ],
-    // https://eslint.org/docs/rules/arrow-parens
-    'arrow-parens': ['off', 'as-needed', { requireForBlockBody: true }],
-    // https://eslint.org/docs/rules/arrow-spacing
-    'arrow-spacing': ['off', { before: true, after: true }],
     // https://eslint.org/docs/rules/constructor-super
     'constructor-super': warnInDevelopment,
-    // https://eslint.org/docs/rules/generator-star-spacing
-    'generator-star-spacing': ['off', { before: false, after: true }],
     // https://eslint.org/docs/rules/no-class-assign
     'no-class-assign': warnInDevelopment,
-    // https://eslint.org/docs/rules/no-confusing-arrow
-    'no-confusing-arrow': ['off', { allowParens: true }],
     // https://eslint.org/docs/rules/no-const-assign
     'no-const-assign': warnInDevelopment,
     // https://eslint.org/docs/rules/no-dupe-class-members
     'no-dupe-class-members': warnInDevelopment,
     // https://eslint.org/docs/rules/no-new-symbol
     'no-new-symbol': warnInDevelopment,
-    // https://eslint.org/docs/rules/no-restricted-imports
-    'no-restricted-imports': ['off', { paths: [], patterns: [] }],
     // https://eslint.org/docs/rules/no-this-before-super
     'no-this-before-super': warnInDevelopment,
     // https://eslint.org/docs/rules/no-useless-computed-key
@@ -831,21 +503,8 @@ module.exports = {
     'prefer-template': warnInDevelopment,
     // https://eslint.org/docs/rules/require-yield
     'require-yield': warnInDevelopment,
-    // https://eslint.org/docs/rules/rest-spread-spacing
-    'rest-spread-spacing': ['off', 'never'],
-    // https://eslint.org/docs/rules/sort-imports
-    'sort-imports': [
-      'off',
-      {
-        ignoreCase: false,
-        ignoreMemberSort: false,
-        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
-      },
-    ],
     // https://eslint.org/docs/rules/symbol-description
     'symbol-description': warnInDevelopment,
-    // https://eslint.org/docs/rules/yield-star-spacing
-    'yield-star-spacing': ['off', 'after'],
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unresolved.md
     'import/no-unresolved': [
       warnInDevelopment,
@@ -910,41 +569,20 @@ module.exports = {
     'import/newline-after-import': warnInDevelopment,
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md
     'import/prefer-default-export': warnInDevelopment,
-    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/max-dependencies.md
-    'import/max-dependencies': ['off', { max: 10 }],
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-absolute-path.md
     'import/no-absolute-path': warnInDevelopment,
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-dynamic-require.md
     'import/no-dynamic-require': warnInDevelopment,
-    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-internal-modules.md
-    'import/no-internal-modules': ['off', { allow: [] }],
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md
     'import/no-webpack-loader-syntax': warnInDevelopment,
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-named-default.md
     'import/no-named-default': warnInDevelopment,
-    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-anonymous-default-export.md
-    'import/no-anonymous-default-export': [
-      'off',
-      {
-        allowArray: false,
-        allowArrowFunction: false,
-        allowAnonymousClass: false,
-        allowAnonymousFunction: false,
-        allowLiteral: false,
-        allowObject: false,
-      },
-    ],
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-self-import.md
     'import/no-self-import': warnInDevelopment,
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-cycle.md
     'import/no-cycle': [warnInDevelopment, { maxDepth: Infinity }],
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-useless-path-segments.md
     'import/no-useless-path-segments': warnInDevelopment,
-    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/dynamic-import-chunkname.md
-    'import/dynamic-import-chunkname': [
-      'off',
-      { importFunctions: [], webpackChunknameFormat: '[0-9a-zA-Z-_/.]+' },
-    ],
     // https://eslint.org/docs/rules/strict
     strict: warnInDevelopment,
     // https://github.com/mysticatea/eslint-plugin-node/blob/master/docs/rules/no-deprecated-api.md
@@ -977,6 +615,15 @@ module.exports = {
         jsxBracketSameLine: true,
         parser: 'flow',
       },
+    ],
+  },
+  settings: {
+    'import/resolver': { node: { extensions: ['.mjs', '.js', '.json'] } },
+    'import/extensions': ['.js', '.mjs', '.jsx'],
+    'import/core-modules': [],
+    'import/ignore': [
+      'node_modules',
+      '\\.(coffee|scss|css|less|hbs|svg|json)$',
     ],
   },
 };

@@ -10,6 +10,21 @@ module.exports = {
   },
   plugins: ['import', 'prettier', 'node'],
   rules: {
+    // Let git handle the linebreaks instead.
+    'linebreak-style': 'off',
+
+    // Enable i++ in for loops
+    'no-plusplus': ['error', {
+      allowForLoopAfterthoughts: true
+    }],
+
+    // Allow debugger and console statement in development
+    'no-debugger': warnInDevelopment,
+    'no-console': warnInDevelopment,
+
+    // Irrelevant in node
+    'no-alert': 'off',
+
     'prettier/prettier': [
       'error',
       {
@@ -20,24 +35,5 @@ module.exports = {
         parser: 'flow',
       },
     ],
-
-    // Enable i++ in for loops
-    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
-
-    // Minor style issues should not stop development
-    semi: [warnInDevelopment, 'always'],
-    'no-trailing-spaces': warnInDevelopment,
-    'no-unused-vars': warnInDevelopment,
-    'comma-dangle': warnInDevelopment,
-    'comma-spacing': [warnInDevelopment, { before: false, after: true }],
-
-    // Allow debugger and console statement in development
-    'no-debugger': warnInDevelopment,
-    'no-console': warnInDevelopment,
-
-    'no-alert': 'off',
-
-    // Let git handle the linebreaks instead.
-    'linebreak-style': 'off',
   },
 };

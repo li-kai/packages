@@ -5,11 +5,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "node genConfig.js",
+    "build": "gen-config",
     "upgrade": "install-peerdeps --yarn --dev eslint-config-airbnb",
     "lint": "eslint ."
   },
   "devDependencies": {
+    "@li-kai/eslint-gen-config": "0.0.0",
     "babel-eslint": "^9.0.0",
     "eslint": "^5.5.0",
     "eslint-config-airbnb": "^17.1.0",
