@@ -2,10 +2,32 @@ const warnInDevelopment =
   process.env.NODE_ENV === 'production' ? 'error' : 'warn';
 
 module.exports = {
-  root: true,
   parser: 'babel-eslint',
-  env: { node: true, es6: true, browser: true },
-  plugins: ['import', 'react', 'jsx-a11y', 'flowtype', 'prettier'],
+  root: true,
+
+  env: {
+    browser: true,
+  },
+
+  plugins: ['flowtype', 'import', 'jsx-a11y', 'react', 'prettier'],
+
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: 'webpack/webpack.config.common.js',
+      },
+    },
+  },
+
+  overrides: [
+    {
+      files: '**/*.test.{js,jsx}',
+      env: {
+        jest: true,
+      },
+    },
+  ],
+
   rules: {
     // https://eslint.org/docs/rules/no-shadow
     'no-shadow': warnInDevelopment,
@@ -909,20 +931,5 @@ module.exports = {
         parser: 'flow',
       },
     ],
-  },
-  settings: {
-    'import/resolver': {
-      node: { extensions: ['.js', '.jsx', '.json'] },
-      webpack: { config: 'webpack/webpack.config.common.js' },
-    },
-    'import/extensions': ['.js', '.mjs', '.jsx'],
-    'import/core-modules': [],
-    'import/ignore': [
-      'node_modules',
-      '\\.(coffee|scss|css|less|hbs|svg|json)$',
-    ],
-    react: { pragma: 'React', version: '16.0' },
-    propWrapperFunctions: ['forbidExtraProps', 'exact', 'Object.freeze'],
-    flowtype: { onlyFilesWithFlowAnnotation: false },
   },
 };

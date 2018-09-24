@@ -3,70 +3,40 @@
 'use strict';
 
 const fs = require('fs');
-const {
-  CLIEngine
-} = require('eslint');
-const {
-  getLinkForPlugin,
-} = require('./utils');
-const objToSource = require('./objToSource');
+const j = require('jscodeshift');
+const { CLIEngine } = require('eslint');
+const formatRules = require('./formatRules');
 
+const ESLINT_FILE_NAME = '.eslintrc.js';
 const FILE_NAME = 'index.js';
-const OFF_RULE = 'off';
-const WARN_RULE = 'warn';
-const ERROR_RULE = 'error';
-const NUM_TO_STR_RULE = {
-  0: OFF_RULE,
-  1: WARN_RULE,
-  2: ERROR_RULE,
-};
-const cli = new CLIEngine({
-  fix: true
-});
 
-const config = cli.getConfigForFile(FILE_NAME);
-const newConfig = {};
+// Get eslint cli engine, with auto fixing
+const cli = new CLIEngine({ fix: true });
 
-const normalisedRules = {};
-Object.entries(config.rules)
-  .sort(
-    ([ruleA], [ruleB]) =>
-    // native rules then plugins
-    ruleA.localeCompare(ruleB) && ruleA.includes('/') && ruleB.includes('/'),
-  )
-  .forEach(([ruleName, value]) => {
-    let ruleResult = value;
+// Get currently (unformatted) eslint rules
+const { rules } = cli.getConfigForFile(FILE_NAME);
+// With the raw rules as string, turn them into ast
+const rulesRoot = j(formatRules(rules));
+// Read the eslint file that we want to modify
+const fileContent = fs.readFileSync(ESLINT_FILE_NAME, 'utf-8');
+// Turn them into ast as well
+const configRoot = j(fileContent);
 
-    // Convert rules to string form
-    if (Array.isArray(value) && Number.isInteger(value[0])) {
-      ruleResult[0] = NUM_TO_STR_RULE[value[0]];
-    } else if (Number.isInteger(value)) {
-      ruleResult = NUM_TO_STR_RULE[value];
-    }
+// Helper function to find the object property
+const findProperty = property => ({ key }) => key.name === property;
+// Remove 'extends' property in the config file
+configRoot.find(j.Property, findProperty('extends')).remove();
 
-    // Either value is string 'off' or array that starts with 'off'
-    const isDeactivated = ruleResult === OFF_RULE || ruleResult[0] === OFF_RULE;
-    if (!isDeactivated) {
-      normalisedRules[ruleName] = {
-        subObj: ruleResult,
-        comment: getLinkForPlugin(ruleName),
-      };
-    }
-  });
+// Find the previous 'rules' property
+const previousRules = configRoot.find(j.Property, findProperty('rules'));
+// Find the new 'rules' property
+const newRules = rulesRoot.find(j.Property, findProperty('rules'));
+// Replace previous with new rules
+previousRules.replaceWith(newRules.get().node);
 
-['root', 'parser', 'env', 'plugins', 'rules', 'settings'].forEach((key) => {
-  const value = config[key];
-  if (value != null) {
-    newConfig[key] = value;
-  }
-});
-newConfig.rules = normalisedRules;
-
-const fileContent = `const warnInDevelopment =
-  process.env.NODE_ENV === 'production' ? 'error' : 'warn';
-
-module.exports = ${objToSource(newConfig)}
-`.replace(/"error"/g, 'warnInDevelopment');
-
-fs.writeFileSync(FILE_NAME, fileContent);
+// Output to raw string
+const outputContent = configRoot.toSource();
+// Write to disk
+fs.writeFileSync(FILE_NAME, outputContent);
+// Fix it with its new config
 CLIEngine.outputFixes(cli.executeOnFiles([FILE_NAME]));

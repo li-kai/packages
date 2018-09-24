@@ -3,8 +3,14 @@ const warnInDevelopment =
 
 module.exports = {
   root: true,
-  env: { node: true, es6: true },
-  plugins: ['import', 'node', 'prettier'],
+
+  env: {
+    es6: true,
+    node: true,
+  },
+
+  plugins: ['import', 'prettier', 'node'],
+
   rules: {
     // https://eslint.org/docs/rules/no-array-constructor
     'no-array-constructor': warnInDevelopment,
@@ -615,15 +621,6 @@ module.exports = {
         jsxBracketSameLine: true,
         parser: 'flow',
       },
-    ],
-  },
-  settings: {
-    'import/resolver': { node: { extensions: ['.mjs', '.js', '.json'] } },
-    'import/extensions': ['.js', '.mjs', '.jsx'],
-    'import/core-modules': [],
-    'import/ignore': [
-      'node_modules',
-      '\\.(coffee|scss|css|less|hbs|svg|json)$',
     ],
   },
 };

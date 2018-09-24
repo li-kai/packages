@@ -25,7 +25,7 @@ function objToSource(obj) {
   let objArr = [];
 
   Object.entries(obj).forEach(([key, value]) => {
-    if (value.hasOwnProperty('comment')) {
+    if (Object.prototype.hasOwnProperty.call(value, 'comment')) {
       const { subObj, comment } = value;
       objArr.push(`// ${comment}`);
       objArr.push(toKeyValuePair(key, jsonStringify(subObj)));
