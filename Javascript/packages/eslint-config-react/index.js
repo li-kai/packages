@@ -12,11 +12,7 @@ module.exports = {
   plugins: ['flowtype', 'import', 'jsx-a11y', 'react', 'prettier'],
 
   settings: {
-    'import/resolver': {
-      webpack: {
-        config: 'webpack/webpack.config.common.js',
-      },
-    },
+    react: { version: 'latest' },
   },
 
   overrides: [
@@ -679,11 +675,6 @@ module.exports = {
     'react/no-unknown-property': warnInDevelopment,
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-es6-class.md
     'react/prefer-es6-class': [warnInDevelopment, 'always'],
-    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-stateless-function.md
-    'react/prefer-stateless-function': [
-      warnInDevelopment,
-      { ignorePureComponents: true },
-    ],
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prop-types.md
     'react/prop-types': [
       warnInDevelopment,
@@ -713,11 +704,6 @@ module.exports = {
     'react/jsx-no-target-blank': [
       warnInDevelopment,
       { enforceDynamicLinks: 'always' },
-    ],
-    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
-    'react/jsx-filename-extension': [
-      warnInDevelopment,
-      { extensions: ['.jsx'] },
     ],
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-comment-textnodes.md
     'react/jsx-no-comment-textnodes': warnInDevelopment,

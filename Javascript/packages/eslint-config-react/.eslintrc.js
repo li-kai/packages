@@ -16,11 +16,7 @@ module.exports = {
   },
   plugins: ['flowtype', 'import', 'jsx-a11y', 'react', 'prettier'],
   settings: {
-    'import/resolver': {
-      webpack: {
-        config: 'webpack/webpack.config.common.js',
-      },
-    },
+    react: { version: 'latest' },
   },
   overrides: [{
     files: '**/*.test.{js,jsx}',
@@ -50,6 +46,8 @@ module.exports = {
       },
     ],
 
+    'react/prefer-stateless-function': 'off',
+    'react/jsx-filename-extension': 'off',
     'react/no-array-index-key': 'off',
     // SEE: https://github.com/yannickcr/eslint-plugin-react/issues
     'react/no-unused-prop-types': 'off',
