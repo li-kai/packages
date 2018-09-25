@@ -1,0 +1,33 @@
+{
+    "name": "@li-kai/babel-preset-react",
+    "version": "0.0.0",
+    "description": "Babel preset for react",
+    "main": "index.js",
+    "license": "MIT",
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "scripts": {
+        "lint": "eslint ."
+    },
+    "dependencies": {
+        "@babel/core": "^7.1.0",
+        "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+        "@babel/plugin-transform-runtime": "^7.1.0",
+        "@babel/plugin-proposal-class-properties": "^7.1.0",
+        "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+        "@babel/preset-react": "^7.0.0",
+        "@babel/preset-env": "^7.1.0"
+    },
+    "devDependencies": {
+        "@li-kai/eslint-gen-config": "0.0.0",
+        "eslint": "^5.5.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-node": "^7.0.1",
+        "eslint-plugin-prettier": "^2.6.2",
+        "prettier": "^1.14.2"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
