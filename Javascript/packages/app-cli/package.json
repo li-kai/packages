@@ -1,0 +1,30 @@
+{
+    "name": "@li-kai/app-cli",
+    "version": "0.0.0",
+    "description": "App runner cli",
+    "main": "index.js",
+    "license": "MIT",
+    "bin": {
+        "app": "./src/index.js"
+    },
+    "dependencies": {
+        "@li-kai/eslint-config-react": "^0.0.0",
+        "@li-kai/babel-preset-react": "^0.0.0",
+        "babel-loader": "^8.0.2",
+        "eslint-loader": "^2.1.1",
+        "eslint-plugin-flowtype": "^2.50.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-jsx-a11y": "^6.1.1",
+        "eslint-plugin-prettier": "^2.6.2",
+        "eslint-plugin-react": "^7.11.1",
+        "eslint": "^5.5.0",
+        "html-webpack-plugin": "^4.0.0-alpha.2",
+        "prettier": "^1.14.2",
+        "webpack-dev-server": "^3.1.8",
+        "webpack": "^4.19.1",
+        "yargs": "^12.0.2"
+    },
+    "devDependencies": {
+        "@li-kai/eslint-config-node": "^0.0.0"
+    }
+}
