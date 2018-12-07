@@ -11,7 +11,7 @@
         "@li-kai/babel-preset-react": "^0.0.0",
         "@li-kai/eslint-config-react": "^0.0.0",
         "babel-loader": "^8.0.2",
-        "css-loader": "^1.0.0",
+        "css-loader": "^2.0.0",
         "eslint": "^5.5.0",
         "eslint-loader": "^2.1.1",
         "eslint-plugin-flowtype": "^3.0.0",
