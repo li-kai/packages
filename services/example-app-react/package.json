@@ -1,18 +1,18 @@
 {
-  "name": "example-app-react",
-  "version": "0.0.0",
-  "description": "Example react app",
-  "main": "index.js",
-  "license": "MIT",
-  "private": true,
-  "scripts": {
-    "start": "app dev"
-  },
-  "dependencies": {
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0"
-  },
-  "devDependencies": {
-    "@li-kai/app-cli": "^0.0.0"
-  }
+    "name": "example-app-react",
+    "version": "0.0.0",
+    "description": "Example react app",
+    "main": "index.js",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "start": "app dev"
+    },
+    "dependencies": {
+        "react": "^16.5.0",
+        "react-dom": "^16.5.0"
+    },
+    "devDependencies": {
+        "@li-kai/app-cli": "^0.0.0"
+    }
 }

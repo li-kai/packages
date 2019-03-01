@@ -97,62 +97,60 @@ module.exports = function webpackConfig(env, argv) {
             },
           },
         },
+        // babel
         {
-          oneOf: [
-            // babel
+          test: /\.(js|jsx)$/,
+          loader: require.resolve('babel-loader'),
+          exclude: /node_modules/,
+          options: {
+            babelrc: false,
+            configFile: false,
+            presets: [require.resolve('@li-kai/babel-preset-react')],
+            // This is a feature of `babel-loader` for webpack (not Babel itself).
+            // It enables caching results in ./node_modules/.cache/babel-loader/
+            // directory for faster rebuilds.
+            cacheDirectory: true,
+            // Don't waste time on Gzipping the cache
+            cacheCompression: false,
+            // Show code highlights for errors
+            highlightCode: true,
+          },
+        },
+        {
+          test: /\.css$/,
+          include: argv.publicPath,
+          use: getStyleLoaders({
+            importLoaders: 1,
+          }),
+        },
+        {
+          test: /\.css$/,
+          exclude: argv.publicPath,
+          use: getStyleLoaders({
+            importLoaders: 1,
+            modules: true,
+          }),
+        },
+        {
+          test: /\.(scss|sass)$/,
+          include: argv.publicPath,
+          use: getStyleLoaders(
             {
-              test: /\.jsx?$/,
-              loader: require.resolve('babel-loader'),
-              exclude: /node_modules/,
-              options: {
-                babelrc: false,
-                configFile: false,
-                presets: [require.resolve('@li-kai/babel-preset-react')],
-                // This is a feature of `babel-loader` for webpack (not Babel itself).
-                // It enables caching results in ./node_modules/.cache/babel-loader/
-                // directory for faster rebuilds.
-                cacheDirectory: true,
-                // Don't waste time on Gzipping the cache
-                cacheCompression: false,
-                // Show code highlights for errors
-                highlightCode: true,
-              },
+              importLoaders: 2,
             },
+            'sass-loader'
+          ),
+        },
+        {
+          test: /\.(scss|sass)$/,
+          exclude: argv.publicPath,
+          use: getStyleLoaders(
             {
-              test: /(?<!module)\.css$/,
-              use: getStyleLoaders({
-                importLoaders: 1,
-              }),
+              importLoaders: 2,
+              modules: true,
             },
-            {
-              test: /\.module\.css$/,
-              // exclude: argv.publicPath,
-              use: getStyleLoaders({
-                importLoaders: 1,
-                modules: true,
-              }),
-            },
-            {
-              test: /(?<!module)\.s[c|a]ss$/,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 2,
-                },
-                'sass-loader'
-              ),
-            },
-            {
-              test: /\.module\.s[c|a]ss$/,
-              // exclude: argv.publicPath,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 2,
-                  modules: true,
-                },
-                'sass-loader'
-              ),
-            },
-          ],
+            'sass-loader'
+          ),
         },
       ],
     },
