@@ -739,8 +739,6 @@ module.exports = {
       warnInDevelopment,
       { props: 'never', children: 'never' },
     ],
-    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
-    'react/destructuring-assignment': [warnInDevelopment, 'always'],
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-access-state-in-setstate.md
     'react/no-access-state-in-setstate': warnInDevelopment,
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/button-has-type.md
