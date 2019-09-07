@@ -18,7 +18,7 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^9.0.0",
+    "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-prettier": "^3.0.0",
     "install-peerdeps": "^1.8.0",
     "prettier": "^1.14.2"
@@ -26,7 +26,7 @@
   "peerDependencies": {
     "eslint": "^6.0.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^9.0.0",
+    "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-prettier": "^3.0.0",
     "prettier": "^1.14.2"
   },
