@@ -14,21 +14,21 @@
   },
   "devDependencies": {
     "@li-kai/eslint-gen-config": "0.0.0",
-    "eslint": "^6.0.0",
+    "eslint": "^7.0.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prettier": "^3.0.0",
     "install-peerdeps": "^1.8.0",
-    "prettier": "^1.14.2"
+    "prettier": "^2.0.0"
   },
   "peerDependencies": {
-    "eslint": "^6.0.0",
+    "eslint": "^7.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "prettier": "^1.14.2"
+    "prettier": "^2.0.0"
   },
   "publishConfig": {
     "access": "public"
