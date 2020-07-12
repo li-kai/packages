@@ -29,7 +29,7 @@
         "style-loader": "^0.23.1",
         "webpack": "^4.19.1",
         "webpack-dev-server": "^3.1.8",
-        "yargs": "^13.0.0"
+        "yargs": "^15.0.0"
     },
     "devDependencies": {
         "@li-kai/eslint-config-node": "^0.0.0"
