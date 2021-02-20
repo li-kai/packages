@@ -20,7 +20,7 @@
         "eslint-plugin-prettier": "^3.0.0",
         "eslint-plugin-react": "^7.11.1",
         "html-webpack-plugin": "^4.0.0-alpha.2",
-        "node-sass": "^4.9.3",
+        "node-sass": "^5.0.0",
         "postcss-flexbugs-fixes": "^4.1.0",
         "postcss-loader": "^3.0.0",
         "postcss-preset-env": "^6.0.10",
