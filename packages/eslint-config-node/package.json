@@ -16,7 +16,7 @@
     "@li-kai/eslint-gen-config": "0.0.0",
     "eslint": "^7.0.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-prettier": "^7.0.0",
+    "eslint-config-prettier": "^8.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prettier": "^3.0.0",
