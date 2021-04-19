@@ -15,6 +15,6 @@
     "check": "yarn clean && yarn compile && yarn test && yarn lint"
   },
   "devDependencies": {
-    "lerna": "^3.4.3"
+    "lerna": "^3.22.1"
   }
 }
