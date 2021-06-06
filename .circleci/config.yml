@@ -21,7 +21,7 @@ aliases:
 javascript: &javascript
   working_directory: ~/packages/Javascript
   docker:
-    - image: circleci/node:10
+    - image: circleci/node:16
 
 jobs:
   test:
