@@ -10,7 +10,7 @@
     "dependencies": {
         "@li-kai/babel-preset-react": "^0.0.0",
         "@li-kai/eslint-config-react": "^0.0.0",
-        "babel-loader": "^8.0.2",
+        "babel-loader": "^9.0.0",
         "css-loader": "^2.0.0",
         "eslint": "^7.0.0",
         "eslint-loader": "^4.0.0",
