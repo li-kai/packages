@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@li-kai/eslint-gen-config": "0.0.0",
-    "babel-eslint": "^10.0.0",
+    "@babel/eslint-parser": "^7.11.0",
     "eslint": "^7.0.0",
     "eslint-config-airbnb": "^18.0.0",
     "eslint-config-prettier": "^8.0.0",
