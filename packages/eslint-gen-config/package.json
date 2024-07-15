@@ -26,6 +26,6 @@
     "eslint": "^7.0.0"
   },
   "dependencies": {
-    "jscodeshift": "^0.6.0"
+    "jscodeshift": "^0.16.0"
   }
 }
